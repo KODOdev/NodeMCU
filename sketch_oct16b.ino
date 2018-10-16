@@ -6,12 +6,6 @@ const char* ssid = "AndroidAP"; // Nome da Rede
  
 const char* password = "tampa123"; //Password da rede
  
-  
- 
-int ledPin = 13; // GPIO13 do ESP8266 e D7 do NodeMCU
- 
-int ledPin1 = 2; // GPIO2 do ESP8266 e D4 do NodeMCU
- 
 WiFiServer server(80); // Porto 80
  
   
@@ -24,7 +18,7 @@ delay(10);
  
 pinMode(LED_BUILTIN, OUTPUT); // Define o D7 como saída
  
-digitalWrite(LED_BUILTIN, LOW); // O LED começa desligado
+digitalWrite(LED_BUILTIN, HIGH); // O LED começa desligado
   
  
 // Comunicação com a rede WiFi
@@ -123,7 +117,7 @@ int value = LOW;
  
 if (request.indexOf("/LED=ON") != -1)  {
  
-digitalWrite(LED_BUILTIN, HIGH); // Se o pedido no LedPin for LED=ON, acende o LED
+digitalWrite(LED_BUILTIN, LOW); // Se o pedido no LedPin for LED=ON, acende o LED
  
 value = HIGH;
  
@@ -131,7 +125,7 @@ value = HIGH;
  
 if (request.indexOf("/LED=OFF") != -1)  {
  
-digitalWrite(LED_BUILTIN, LOW); // Se o pedido no LedPin for LED=OFF, apaga o LED
+digitalWrite(LED_BUILTIN, HIGH); // Se o pedido no LedPin for LED=OFF, apaga o LED
  
 value = LOW;
  
@@ -173,8 +167,8 @@ client.print("Off");// Se está desligado apresenta “Off”
  
 client.println("<br><br>");
 
-client.println("<a href=\"/LED=OFF\"\"><button>Turn Off</button></a><br/>");  // Desligar o LED corresponde Turn Off
-client.println("<a href=\"/LED=ON\"\"><button>Turn On</button></a>");// Ligar o LED corresponde Turn On
+client.println("<a href=\"/LED=ON\"\"><button>Turn Off</button></a><br/>");  // Desligar o LED corresponde Turn Off
+client.println("<a href=\"/LED=OFF\"\"><button>Turn On</button></a>");// Ligar o LED corresponde Turn On
  
 client.println("</html>");
  
